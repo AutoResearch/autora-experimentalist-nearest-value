@@ -1,35 +1,58 @@
-"""
-Example Experimentalist Sampler
-"""
-
-
+from typing import Iterable, Sequence, Union
 import numpy as np
-from typing import Optional
 
-def example_sampler(
-    condition_pool: np.ndarray, num_samples: Optional[int] = None) -> np.ndarray:
+def nearest_values_sampler(
+    samples: Union[Iterable, Sequence],
+    allowed_values: np.ndarray,
+    n: int,
+):
     """
-    Add a description of the sampler here.
+    A sampler which returns the nearest values between the input samples and the allowed values,
+    without replacement.
 
     Args:
-        condition_pool: pool of experimental conditions to evaluate
-        num_samples: number of experimental conditions to select
+        samples: input conditions
+        allowed_samples: allowed conditions to sample from
 
     Returns:
-        Sampled pool of experimental conditions
-
-    *Optional*
-    Examples:
-        These examples add documentation and also work as tests
-        >>> example_sampler([1, 2, 3, 4])
-        1
-        >>> example_sampler(range(3, 10))
-        3
+        the nearest values from `allowed_samples` to the `samples`
 
     """
-    if num_samples is None:
-        num_samples = condition_pool.shape[0]
 
-    new_conditions = condition_pool
+    if isinstance(allowed_values, Iterable):
+        allowed_values = np.array(list(allowed_values))
 
-    return new_conditions[:num_samples]
+    if len(allowed_values.shape) == 1:
+        allowed_values = allowed_values.reshape(-1, 1)
+
+    if isinstance(samples, Iterable):
+        samples = np.array(list(samples))
+
+    if allowed_values.shape[0] < n:
+        raise Exception(
+            "More samples requested than samples available in the set allowed of values."
+        )
+
+    if isinstance(samples, Iterable) or isinstance(samples, Sequence):
+        samples = np.array(list(samples))
+
+    if hasattr(samples, "shape"):
+        if samples.shape[0] < n:
+            raise Exception(
+                "More samples requested than samples available in the pool."
+            )
+
+    x_new = np.empty((n, allowed_values.shape[1]))
+
+    # get index of row in x that is closest to each sample
+    for row, sample in enumerate(samples):
+
+        if row >= n:
+            break
+
+        dist = np.linalg.norm(allowed_values - sample, axis=1)
+        idx = np.argmin(dist)
+        x_new[row, :] = allowed_values[idx, :]
+        allowed_values = np.delete(allowed_values, idx, axis=0)
+
+    return x_new

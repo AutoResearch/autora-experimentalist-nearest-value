@@ -1,13 +1,14 @@
-from autora.experimentalist.sampler.nearest_value_sampler import example_sampler
+from autora.experimentalist.sampler.nearest_value import nearest_values_sampler
 import numpy as np
 
 def test_output_dimensions():
-    X = np.array([[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12]])
-    n = 2
-    X_new = example_sampler(X, n)
+    #Meta-Setup
+    X_allowed =  np.linspace(X_range[0], X_range[1], X_range[1]-X_range[0]+1)
+    X = np.random.choice(X_allowed,10)
+    n = 5
+    
+    #Sampler
+    X_new = nearest_values_sampler(X, X_allowed, n)
 
     # Check that the sampler returns n experiment conditions
     assert X_new.shape == (n, X.shape[1])
-
-
-# Note: We encourage you to adjust this test and write more tests.
