@@ -1,34 +1,18 @@
-# Nearest-Value-Sampler
+# Model Disagreement Sampler
 
-Explain what your contribution is doing here
+A sampler which returns the nearest values between the input samples and the allowed values, without replacement.
 
-You can include inline mathematics like this: \(3 < 4\)
+# Example Code
 
-Include block mathematics like this (don't forget the empty lines above and below the block):
+```
+from autora.experimentalist.sampler.nearest_value_sampler import nearest_values_sampler
+import numpy as np
 
-$$  
-y + 1 = 4 
-$$
+#Meta-Setup
+X_allowed = np.linspace(-3, 6, 10)
+X = np.random.choice(X_allowed,10)
+n = 5
 
-... or this:
-
-\[
-E(\mathbf{v}, \mathbf{h}) = -\sum_{i,j}w_{ij}v_i h_j - \sum_i b_i v_i - \sum_j c_j h_j
-\]
-
-... or this:
-
-\begin{align}
-    p(v_i=1|\mathbf{h}) & = \sigma\left(\sum_j w_{ij}h_j + b_i\right) \\
-    p(h_j=1|\mathbf{v}) & = \sigma\left(\sum_i w_{ij}v_i + c_j\right)
-\end{align}
-
-
-Include inline mathematics like this \(x < 1\) or this $c = 3$ or this
-or block mathematics:
-
-\[
-x + 1 = 3
-\]
-
-
+#Sampler
+X_new = nearest_values_sampler(X, X_allowed, n)
+```

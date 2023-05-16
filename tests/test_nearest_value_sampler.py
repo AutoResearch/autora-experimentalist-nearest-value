@@ -1,9 +1,9 @@
-from autora.experimentalist.sampler.nearest_value import nearest_values_sampler
+from autora.experimentalist.sampler.nearest_value_sampler import nearest_values_sampler
 import numpy as np
 
 def test_output_dimensions():
     #Meta-Setup
-    X_allowed =  np.linspace(X_range[0], X_range[1], X_range[1]-X_range[0]+1)
+    X_allowed = np.linspace(-3, 6, 10)
     X = np.random.choice(X_allowed,10)
     n = 5
     
