@@ -1,4 +1,4 @@
-# AutoRA Model Disagreement Sampler
+# AutoRA Nearest Value Sampler
 
 A sampler which returns the nearest values between the input samples and the allowed values, without replacement.
 
