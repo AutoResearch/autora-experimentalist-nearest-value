@@ -1,6 +1,6 @@
 [project]
 # UPDATE THIS BEFORE PUBLISHING
-name = "Autora-Experimentalist-Sampler-Nearest-Value-Sampler"
+name = "autora-experimentalist-sampler-nearest-value-sampler"
 description = "A sampler which returns the nearest values between the input samples and the allowed values, without replacement."
 authors = [{ name = "Built by Sebastian Musslick, restructured by Chad Williams", email = "sebastian_musslick@brown.edu" }]
 dynamic = ["version"]
