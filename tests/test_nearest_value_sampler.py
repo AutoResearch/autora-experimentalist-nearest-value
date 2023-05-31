@@ -4,7 +4,7 @@ import numpy as np
 def test_output_dimensions():
     #Meta-Setup
     X_allowed = np.linspace(-3, 6, 10)
-    X = np.random.choice(X_allowed,10)
+    X = np.random.choice(X_allowed,10).reshape(-1, 1)
     n = 5
     
     #Sampler
