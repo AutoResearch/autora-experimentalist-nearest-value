@@ -1,4 +1,4 @@
-from autora.experimentalist.sampler.nearest_value_sampler import nearest_values_sampler
+from autora.experimentalist.sampler.nearest_value import nearest_values_sampler
 import numpy as np
 
 def test_output_dimensions():
