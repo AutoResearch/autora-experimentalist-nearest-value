@@ -5,7 +5,7 @@ A sampler which returns the nearest values between the input samples and the all
 # Example Code
 
 ```
-from autora.experimentalist.sampler.nearest_value import nearest_values_sampler
+from autora.experimentalist.sampler.nearest_value import nearest_values_sample
 import numpy as np
 
 #Meta-Setup
@@ -14,5 +14,5 @@ X = np.random.choice(X_allowed,10)
 n = 5
 
 #Sampler
-X_new = nearest_values_sampler(X, X_allowed, n)
+X_new = nearest_values_sample(X, X_allowed, n)
 ```

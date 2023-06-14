@@ -13,5 +13,5 @@ pip install -U autora["experimentalist-sampler-nearest-value"]
 
 Check your installation by running:
 ```shell
-python -c "from autora.experimentalist.sampler.nearest_value import nearest_values_sampler"
+python -c "from autora.experimentalist.sampler.nearest_value import nearest_values_sample"
 ```

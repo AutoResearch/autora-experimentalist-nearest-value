@@ -3,6 +3,7 @@ import numpy as np
 
 from autora.utils.deprecation import deprecated_alias
 
+
 def nearest_values_sample(
     samples: Union[Iterable, Sequence],
     allowed_values: np.ndarray,
