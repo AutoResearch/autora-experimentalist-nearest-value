@@ -1,4 +1,4 @@
-from autora.experimentalist.sampler.nearest_value import nearest_values_sampler
+from autora.experimentalist.sampler.nearest_value import nearest_values_sample
 import numpy as np
 
 def test_output_dimensions():
@@ -8,7 +8,7 @@ def test_output_dimensions():
     n = 5
     
     #Sampler
-    X_new = nearest_values_sampler(X, X_allowed, n)
+    X_new = nearest_values_sample(X, X_allowed, n)
 
     # Check that the sampler returns n experiment conditions
     assert X_new.shape == (n, X.shape[1])
