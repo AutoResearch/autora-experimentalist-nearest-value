@@ -1,7 +1,7 @@
 from typing import Iterable, Sequence, Union
 import numpy as np
 
-def nearest_values_sampler(
+def nearest_values_sample(
     samples: Union[Iterable, Sequence],
     allowed_values: np.ndarray,
     n: int,
