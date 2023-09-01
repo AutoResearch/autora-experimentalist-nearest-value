@@ -1,10 +1,11 @@
 from typing import Iterable, Sequence, Union
+
 import numpy as np
 
 from autora.utils.deprecation import deprecated_alias
 
 
-def nearest_values_sample(
+def sample(
     samples: Union[Iterable, Sequence],
     allowed_values: np.ndarray,
     num_samples: int,
@@ -61,4 +62,8 @@ def nearest_values_sample(
 
     return x_new
 
-nearest_values_sampler = deprecated_alias(nearest_values_sample, "nearest_values_sampler")
+
+nearest_values_sample = sample
+nearest_values_sampler = deprecated_alias(
+    nearest_values_sample, "nearest_values_sampler"
+)

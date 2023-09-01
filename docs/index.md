@@ -1,11 +1,11 @@
-# Nearest Value Sampler
+# Nearest Value Experimentalist
 
 A sampler which returns the nearest values between the input samples and the allowed values, without replacement.
 
 # Example Code
 
 ```
-from autora.experimentalist.sampler.nearest_value import nearest_values_sample
+from autora.experimentalist.nearest_value import nearest_values_sample
 import numpy as np
 
 #Meta-Setup
