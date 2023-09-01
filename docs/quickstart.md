@@ -7,11 +7,11 @@ You will need:
 *Nearest-Value-Sampler is a part of the `autora` package:
 
 ```shell
-pip install -U autora["experimentalist-sampler-nearest-value"]
+pip install -U autora["experimentalist-nearest-value"]
 ```
 
 
 Check your installation by running:
 ```shell
-python -c "from autora.experimentalist.sampler.nearest_value import nearest_values_sample"
+python -c "from autora.experimentalist.nearest_value import nearest_values_sample"
 ```

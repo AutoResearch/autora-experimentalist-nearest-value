@@ -1,6 +1,6 @@
 [project]
 # UPDATE THIS BEFORE PUBLISHING
-name = "autora-experimentalist-sampler-nearest-value"
+name = "autora-experimentalist-nearest-value"
 description = "A sampler which returns the nearest values between the input samples and the allowed values, without replacement."
 authors = [{ name = "Built by Sebastian Musslick, restructured by Chad Williams", email = "sebastian_musslick@brown.edu" }]
 dynamic = ["version"]
@@ -22,7 +22,7 @@ dev = [
 
 [project.urls]
 homepage = "http://www.empiricalresearch.ai"
-repository = "https://github.com/AutoResearch/autora-experimentalist-sampler-nearest-value"
+repository = "https://github.com/AutoResearch/autora-experimentalist-nearest-value"
 documentation = "https://autoresearch.github.io/autora/"
 
 
