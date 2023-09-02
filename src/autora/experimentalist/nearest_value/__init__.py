@@ -59,7 +59,7 @@ def sample(
         dist = np.linalg.norm(X_allowed_values - sample, axis=1)
         idx = np.argmin(dist)
         x_new[row, :] = X_allowed_values[idx, :]
-        allowed_values = np.delete(X_allowed_values, idx, axis=0)
+        X_allowed_values = np.delete(X_allowed_values, idx, axis=0)
 
     if isinstance(conditions, pd.DataFrame):
         x_new = pd.DataFrame(x_new, columns=conditions.columns)
