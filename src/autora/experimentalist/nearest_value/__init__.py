@@ -7,9 +7,9 @@ from autora.utils.deprecation import deprecated_alias
 
 
 def sample(
-    conditions: Union[pd.DataFrame, np.ndarray],
-    allowed_values: Union[pd.DataFrame, np.ndarray],
-    num_samples: int,
+        conditions: Union[pd.DataFrame, np.ndarray],
+        allowed_values: Union[pd.DataFrame, np.ndarray],
+        num_samples: int,
 ):
     """
     A experimentalist which returns the nearest values between the input samples and the allowed
@@ -30,13 +30,14 @@ def sample(
 
     X = np.array(conditions)
 
+    _allowed_values = allowed_values.copy()
     if isinstance(allowed_values, pd.DataFrame):
         if set(conditions.columns) != set(allowed_values.columns):
             raise Exception(
                 f"Variable names {set(conditions.columns)} in conditions"
                 f"and {set(allowed_values.columns)} in allowed values don't match. "
             )
-        _allowed_values = allowed_values.copy()
+
         _allowed_values = _allowed_values[conditions.columns]
 
     X_allowed_values = np.array(_allowed_values)
