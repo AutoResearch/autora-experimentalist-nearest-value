@@ -25,8 +25,6 @@ def sample(
 
     """
 
-
-
     X = np.array(conditions)
 
     _allowed_values = allowed_values.copy()
