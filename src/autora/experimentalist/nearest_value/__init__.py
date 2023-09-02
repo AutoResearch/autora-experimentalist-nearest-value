@@ -1,4 +1,4 @@
-from typing import Iterable, Union
+from typing import Union
 
 import numpy as np
 import pandas as pd
@@ -8,7 +8,7 @@ from autora.utils.deprecation import deprecated_alias
 
 def sample(
     conditions: Union[pd.DataFrame, np.ndarray],
-    allowed_values: np.ndarray,
+    allowed_values: Union[pd.DataFrame, np.ndarray],
     num_samples: int,
 ):
     """
@@ -25,23 +25,30 @@ def sample(
 
     """
 
-    if isinstance(allowed_values, Iterable):
-        allowed_values = np.array(list(allowed_values))
-
     if len(allowed_values.shape) == 1:
         allowed_values = allowed_values.reshape(-1, 1)
 
-    if allowed_values.shape[0] < num_samples:
+    X = np.array(conditions)
+    if isinstance(allowed_values, pd.DataFrame):
+        if set(conditions.columns) != set(allowed_values.columns):
+            raise Exception(
+                f"Variable names {set(conditions.columns)} in conditions"
+                f"and {set(allowed_values.columns)} in allowed values don't match. "
+            )
+        _allowed_values = allowed_values.copy()
+        _allowed_values = _allowed_values[conditions.columns]
+
+    X_allowed_values = np.array(_allowed_values)
+
+    if X_allowed_values.shape[0] < num_samples:
         raise Exception(
             "More samples requested than samples available in the set allowed of values."
         )
 
-    X = np.array(conditions)
-
     if X.shape[0] < num_samples:
         raise Exception("More samples requested than samples available in the pool.")
 
-    x_new = np.empty((num_samples, allowed_values.shape[1]))
+    x_new = np.empty((num_samples, X_allowed_values.shape[1]))
 
     # get index of row in x that is closest to each sample
     for row, sample in enumerate(X):
@@ -49,10 +56,10 @@ def sample(
         if row >= num_samples:
             break
 
-        dist = np.linalg.norm(allowed_values - sample, axis=1)
+        dist = np.linalg.norm(X_allowed_values - sample, axis=1)
         idx = np.argmin(dist)
-        x_new[row, :] = allowed_values[idx, :]
-        allowed_values = np.delete(allowed_values, idx, axis=0)
+        x_new[row, :] = X_allowed_values[idx, :]
+        allowed_values = np.delete(X_allowed_values, idx, axis=0)
 
     if isinstance(conditions, pd.DataFrame):
         x_new = pd.DataFrame(x_new, columns=conditions.columns)
