@@ -29,6 +29,7 @@ def sample(
         allowed_values = allowed_values.reshape(-1, 1)
 
     X = np.array(conditions)
+
     if isinstance(allowed_values, pd.DataFrame):
         if set(conditions.columns) != set(allowed_values.columns):
             raise Exception(
