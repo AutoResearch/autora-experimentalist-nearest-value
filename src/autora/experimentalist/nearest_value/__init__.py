@@ -25,8 +25,7 @@ def sample(
 
     """
 
-    if len(allowed_values.shape) == 1:
-        allowed_values = allowed_values.reshape(-1, 1)
+
 
     X = np.array(conditions)
 
@@ -41,6 +40,9 @@ def sample(
         _allowed_values = _allowed_values[conditions.columns]
 
     X_allowed_values = np.array(_allowed_values)
+
+    if len(X_allowed_values.shape) == 1:
+        X_allowed_values = X_allowed_values.reshape(-1, 1)
 
     if X_allowed_values.shape[0] < num_samples:
         raise Exception(
