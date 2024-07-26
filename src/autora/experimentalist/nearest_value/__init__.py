@@ -56,6 +56,8 @@ def sample(
 
     if isinstance(conditions, pd.DataFrame):
         x_new = pd.DataFrame(x_new, columns=conditions.columns)
+    else:
+        x_new = pd.DataFrame(x_new)
 
     return x_new
 
